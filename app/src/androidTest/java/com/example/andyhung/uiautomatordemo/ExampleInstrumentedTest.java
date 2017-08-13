@@ -13,9 +13,10 @@ import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiSelector;
 import android.support.test.uiautomator.UiWatcher;
 import android.support.test.uiautomator.Until;
+import android.view.KeyEvent;
 
-import org.junit.Assert;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -72,13 +73,19 @@ public class ExampleInstrumentedTest {
     }
 
     @Test
-    public void playMusic() throws UiObjectNotFoundException, RemoteException {
-        // TBD
-    }
-
-    @Test
-    public void searchMusic() throws UiObjectNotFoundException, RemoteException {
-        //TBD
+    public void searchAndPlayMusic() throws UiObjectNotFoundException, RemoteException {
+        mDevice.wait(findText("KKBOX"), DEFAULT_TIMEOUT).click();
+        mDevice.wait(findResAndDescription("com.skysoft.kkbox.android", "menu_global_search", "線上搜尋"), DEFAULT_TIMEOUT).click();
+        mDevice.wait(findClassNameAndText("android.widget.EditText", "   搜尋"), DEFAULT_TIMEOUT).setText("青花瓷");
+        mDevice.pressKeyCode(KeyEvent.KEYCODE_ENTER);
+        UiObject resultObject = mDevice.findObject(selectClassNameAndResId("android.widget.FrameLayout", "com.skysoft.kkbox.android:id/layout_swipe"));
+        if (resultObject.exists()) {
+            try {
+                resultObject.click();
+            } catch (UiObjectNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
