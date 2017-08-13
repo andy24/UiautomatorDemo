@@ -20,3 +20,5 @@ androidTestCompile 'com.android.support:support-annotations:25.3.1'
 3. Run "./gradlew connectedDebugAndroidTest" and get this message "Skipping device 'P024 - 6.0.1' for 'app:': minSdkVersion [25] > deviceApiLevel [23]"
 Solution:
 change minSdkVersion 25 to minSdkVersion 23
+change targetSdkVersion 25 to targetSdkVersion 23
+
