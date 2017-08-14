@@ -79,6 +79,7 @@ public class ExampleInstrumentedTest {
         mDevice.wait(findClassNameAndText("android.widget.EditText", "   搜尋"), DEFAULT_TIMEOUT).setText("青花瓷");
         mDevice.pressKeyCode(KeyEvent.KEYCODE_ENTER);
         UiObject resultObject = mDevice.findObject(selectClassNameAndResId("android.widget.FrameLayout", "com.skysoft.kkbox.android:id/layout_swipe"));
+	Assert.assertTrue(resultObject.exists());
         if (resultObject.exists()) {
             try {
                 resultObject.click();
